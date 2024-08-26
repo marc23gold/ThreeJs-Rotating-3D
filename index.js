@@ -26,6 +26,8 @@ const scene = new THREE.Scene();
 
 // Add orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.03;
 
 const geo = new THREE.IcosahedronGeometry(1.0, 2);
 const mat = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true });
@@ -45,8 +47,9 @@ mesh.add(wireMesh);
 
 function animate(t=0) {
     requestAnimationFrame(animate);
-    mesh.rotation.y = t * 0.0001;
+    //mesh.rotation.y = t * 0.0001;
     renderer.render(scene, camera);
+    controls.update();
 }
 
 animate();

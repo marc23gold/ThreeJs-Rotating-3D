@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "jsm/controls/OrbitControls.js";
 
 // Set the size of the window
 const w = window.innerWidth;
@@ -23,6 +24,9 @@ camera.position.z = 2;
 // Create a scene
 const scene = new THREE.Scene();
 
+// Add orbit controls
+const controls = new OrbitControls(camera, renderer.domElement);
+
 const geo = new THREE.IcosahedronGeometry(1.0, 2);
 const mat = new THREE.MeshStandardMaterial({ color: 0xffffff, flatShading: true });
 const mesh = new THREE.Mesh(geo, mat);
@@ -35,6 +39,7 @@ scene.add(hemiLight);
 const wireMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
 const wireMesh = new THREE.Mesh(geo, wireMat);
 scene.add(wireMesh);
+wireMesh.scale.setScalar(1.001);
 mesh.add(wireMesh);
 
 
